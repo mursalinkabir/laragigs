@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Listing;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,18 +16,37 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('listings',[
+        'heading' => 'Latest Listings',
+        'listings' => Listing::all()
+    ]);
 });
 
-Route::get('/hello',function(){
-    return response('<h1>Hello World</h1>')
-    ->header('Content-type','text/plain');
+//single listing
+//using wildcard to use id as a string param
+Route::get('/listings/{id}',function($id){
+    return view('listing',[
+        'listing' => Listing::find($id)
+    ]);
 });
 
-Route::get('/posts/{id}',function($id){
-    //die and dump
-    //dd($id);
-    // die , dumb and debug
-    ddd($id)
-    return response('Post '. $id);
-})->where('id','[0-9]+');
+
+
+// Route::get('/hello',function(){
+//     return response('<h1>Hello World</h1>')
+//     ->header('Content-type','text/plain');
+// });
+
+// Route::get('/posts/{id}',function($id){
+//     //die and dump
+//     //dd($id);
+//     // die , dumb and debug
+//     ddd($id);
+//     return response('Post '. $id);
+// })->where('id','[0-9]+');
+// // catching the request parameters
+// Route::get('/search', function(Request $request){
+    
+//     //dd($request->name.' '.$request->city);
+//     return $request->name.' '.$request->city;
+// });
