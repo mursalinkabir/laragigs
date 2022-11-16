@@ -16,17 +16,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('listings',[
+    return view('listings', [
         'heading' => 'Latest Listings',
         'listings' => Listing::all()
     ]);
 });
 
+
 //single listing
 //using wildcard to use id as a string param
-Route::get('/listings/{id}',function($id){
-    return view('listing',[
-        'listing' => Listing::find($id)
+Route::get('/listings/{listing}', function (Listing $listing) {
+    return view('listing', [
+        'listing' => $listing
     ]);
 });
 
@@ -46,7 +47,7 @@ Route::get('/listings/{id}',function($id){
 // })->where('id','[0-9]+');
 // // catching the request parameters
 // Route::get('/search', function(Request $request){
-    
+
 //     //dd($request->name.' '.$request->city);
 //     return $request->name.' '.$request->city;
 // });
