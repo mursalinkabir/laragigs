@@ -36,6 +36,8 @@ Route::get('/listings/create', [ListingController::class,'create']);
 Route::get('/listings/{listing}', [ListingController::class,'show']);
 
 
+//Store listing data
+Route::post('/listings', [ListingController::class,'store']);
 
 // Route::get('/hello',function(){
 //     return response('<h1>Hello World</h1>')
