@@ -27,12 +27,12 @@ class ListingController extends Controller
         return view('listings.create');
     }
 
-    //store listing data
+    //store listing data 
     public function store(Request $request){
         //validating a form
         $formFields = $request->validate([
             'title' => 'required',
-            'company' => ['required', Rule::unique('listing','company')],
+            'company' => ['required', Rule::unique('listings','company')],
             'location' => 'required',
             'website' => 'required',
             'email' => ['required','email'],
@@ -40,7 +40,9 @@ class ListingController extends Controller
             'description' => 'required'
 
         ]);
-        //redirecting to home page
-        return redirect('/');
+        // storing the fileds in db command
+        Listing::create($formFields);
+        //redirecting to home page with message var as session var
+        return redirect('/')->with('message', 'Listing created successfully!');
     }
 }
