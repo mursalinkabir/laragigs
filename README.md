@@ -21,3 +21,4 @@ Laragigs is a laravel job listing website :
 - **Faker**
 - **Tailwind**
 - **VSCODE**
+- **alpinejs**
