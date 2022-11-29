@@ -40,6 +40,13 @@ class ListingController extends Controller
             'description' => 'required'
 
         ]);
+
+        if ($request->hasFile('logo')) {
+            //specifying to store the logo image to a folder named logos 
+            // In the $formfields[logo] field we are only getting the path of the saved image
+            $formFields['logo'] = $request->file('logo')->store('logos','public');
+        }
+
         // storing the fileds in db command
         Listing::create($formFields);
         //redirecting to home page with message var as session var
