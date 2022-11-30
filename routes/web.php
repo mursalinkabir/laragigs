@@ -39,21 +39,9 @@ Route::get('/listings/{listing}', [ListingController::class,'show']);
 //Store listing data
 Route::post('/listings', [ListingController::class,'store']);
 
-// Route::get('/hello',function(){
-//     return response('<h1>Hello World</h1>')
-//     ->header('Content-type','text/plain');
-// });
+// Show Edit form
 
-// Route::get('/posts/{id}',function($id){
-//     //die and dump
-//     //dd($id);
-//     // die , dumb and debug
-//     ddd($id);
-//     return response('Post '. $id);
-// })->where('id','[0-9]+');
-// // catching the request parameters
-// Route::get('/search', function(Request $request){
+Route::get('/listings/{listing}/edit', [ListingController::class,'edit']);
+//update listing
 
-//     //dd($request->name.' '.$request->city);
-//     return $request->name.' '.$request->city;
-// });
+Route::put('/listings/{listing}',[ListingController::class,'update']);
