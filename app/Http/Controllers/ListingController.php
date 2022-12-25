@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Listing;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\Rule;
 
 class ListingController extends Controller
@@ -78,10 +79,15 @@ class ListingController extends Controller
             }
     
             // storing the existing updated listing 
+
             $listing->update($formFields);
             //redirecting to home page with message var as session var
             return back()->with('message', 'Listing updated successfully!');
         }
+    public function destroy(Listing $listing){
+        $listing->delete();
+        return Redirect('/')->with('message','Listing deleted successfully');
+    }
     
 
 }
