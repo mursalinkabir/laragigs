@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ListingController;
+use App\Http\Controllers\UserController;
 use App\Models\Listing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -31,10 +32,10 @@ Route::get('/', [ListingController::class,'index']);
 // show create form
 Route::get('/listings/create', [ListingController::class,'create']);
 
+Route::get('/listings/create', [ListingController::class,'create']);
 //single listing
 //using wildcard to use id as a string param
 Route::get('/listings/{listing}', [ListingController::class,'show']);
-
 
 //Store listing data
 Route::post('/listings', [ListingController::class,'store']);
@@ -46,3 +47,6 @@ Route::get('/listings/{listing}/edit', [ListingController::class,'edit']);
 Route::put('/listings/{listing}',[ListingController::class,'update']);
 //delete listing
 Route::delete('/listings/{listing}',[ListingController::class,'destroy']);
+
+// show Register/Create form
+Route::get('/register',[UserController::class, 'create']);
